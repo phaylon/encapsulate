@@ -7,14 +7,16 @@ use std::str;
 
 static SOURCE_PLAIN: &str = "
     fn main() {
-        ::std::process::exit(0);
+        println!(\"FOO\");
     }
 ";
 
 static SOURCE_ENCAPSULATE: &str = "
     #[macro_use] extern crate encapsulate;
     fn main() {
-        encapsulate! { ::std::process::exit(0) };
+        encapsulate! {
+            println!(\"FOO\");
+        };
     }
 ";
 
@@ -32,7 +34,6 @@ macro_rules! gen_opt_level_tests {
 macro_rules! gen_tests {
     ($name:ident, $source_a:expr, $source_b:expr) => {
         mod $name {
-            gen_opt_level_tests!(opt_level_0, $source_a, $source_b, 0);
             gen_opt_level_tests!(opt_level_1, $source_a, $source_b, 1);
             gen_opt_level_tests!(opt_level_2, $source_a, $source_b, 2);
             gen_opt_level_tests!(opt_level_3, $source_a, $source_b, 3);
