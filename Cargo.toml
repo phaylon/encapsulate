@@ -3,4 +3,5 @@ name = "encapsulate"
 version = "0.1.0"
 authors = ["Robert Sedlacek <rs@474.at>"]
 
-[dependencies]
+[dev-dependencies]
+tempfile = "3.0.1"
